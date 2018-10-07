@@ -86,11 +86,23 @@ class AbstractObject implements \JsonSerializable
     }
 
     /**
+     * Check recursively whether any of the objects contain placeholders.
+     *
      * @return boolean
      */
     protected function containsPlaceholders()
     {
-        return $this->containsPlaceholders;
+        if ($this->containsPlaceholders) {
+            return true;
+        }
+
+        foreach ($this->fields as $field) {
+            if ($field instanceof self && $field->containsPlaceholders()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
