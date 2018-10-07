@@ -75,6 +75,24 @@ class ActivityTest extends TestCase
         $this->assertProductsAreRenderedCorrectly($json, 'products');
     }
 
+    /** @test */
+    public function it_builds_a_checkout_activity_object()
+    {
+        $actionField = Builder::make('actionFieldObject')
+            ->setVariable('step', 'stepId')
+            ->setVariable('option', 'optionName');
+
+        $checkout = Builder::make('checkout')
+            ->set('actionField', $actionField)
+            ->addProducts($this->products);
+
+        $json = $checkout->renderAsJson();
+
+        $this->assertContains('"step": stepId', $json);
+        $this->assertContains('"option": optionName', $json);
+        $this->assertProductsAreRenderedCorrectly($json, 'products');
+    }
+
     /**
      * Assert that the Json string contains the names of the products rendered
      * under the $productArrayKey specified.

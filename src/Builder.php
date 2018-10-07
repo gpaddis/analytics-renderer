@@ -8,6 +8,7 @@ namespace Gpaddis\AnalyticsRenderer;
 class Builder
 {
     protected static $objectAliases = [
+        'checkout' => 'EnhancedEcommerce\Activity\Checkout',
         'click' => 'EnhancedEcommerce\Activity\Click',
         'detail' => 'EnhancedEcommerce\Activity\Detail',
         'impressions' => 'EnhancedEcommerce\Activity\Impressions',
