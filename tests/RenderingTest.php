@@ -17,8 +17,8 @@ class RenderingTest extends TestCase
             ->set('field1', 'value1')
             ->addProduct($product);
 
-        $json = $object->renderAsJson();
-        $minifiedJson = $object->renderAsJson();
+        $json = $object->asJson();
+        $minifiedJson = $object->asJson();
 
         $this->assertJson($json);
         $this->assertJson($minifiedJson);
@@ -42,7 +42,7 @@ class RenderingTest extends TestCase
             ->setVariable('var3', 'variable3')
             ->setVariable('var4', 'variable4');
 
-        $json = $object->renderAsJson();
+        $json = $object->asJson();
 
         $this->assertContains('"var1": variable1', $json);
         $this->assertContains('"var2": variable2', $json);

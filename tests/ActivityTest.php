@@ -27,7 +27,7 @@ class ActivityTest extends TestCase
             ->set('actionField', ['list' => 'Search Results'])
             ->addProducts($this->products);
 
-        $json = $click->renderAsJson();
+        $json = $click->asJson();
 
         $this->assertContains('"list": "Search Results"', $json);
         $this->assertProductsAreRenderedCorrectly($json, 'products');
@@ -40,7 +40,7 @@ class ActivityTest extends TestCase
             ->set('actionField', ['list' => 'Apparel Gallery'])
             ->addProducts($this->products);
 
-        $json = $detail->renderAsJson();
+        $json = $detail->asJson();
 
         $this->assertContains('"list": "Apparel Gallery"', $json);
         $this->assertProductsAreRenderedCorrectly($json, 'products');
@@ -53,7 +53,7 @@ class ActivityTest extends TestCase
             ->set('currencyCode', 'EUR')
             ->addProducts($this->products);
 
-        $json = $impressions->renderAsJson();
+        $json = $impressions->asJson();
 
         $this->assertContains('"currencyCode": "EUR"', $json);
         $this->assertProductsAreRenderedCorrectly($json, 'impressions');
@@ -69,7 +69,7 @@ class ActivityTest extends TestCase
             ->set('actionField', $actionField)
             ->addProducts($this->products);
 
-        $json = $purchase->renderAsJson();
+        $json = $purchase->asJson();
 
         $this->assertContains('"id": "T12345"', $json);
         $this->assertProductsAreRenderedCorrectly($json, 'products');
@@ -86,7 +86,7 @@ class ActivityTest extends TestCase
             ->set('actionField', $actionField)
             ->addProducts($this->products);
 
-        $json = $checkout->renderAsJson();
+        $json = $checkout->asJson();
 
         $this->assertContains('"step": stepId', $json);
         $this->assertContains('"option": optionName', $json);

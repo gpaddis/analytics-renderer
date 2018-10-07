@@ -62,15 +62,15 @@ class AbstractObject implements \JsonSerializable
     /**
      * @return string
      */
-    public function renderAsMinifiedJson()
+    public function asMinifiedJson()
     {
-        return $this->renderAsJson(false);
+        return $this->asJson(false);
     }
 
     /**
      * @return string
      */
-    public function renderAsJson($prettyPrint = true)
+    public function asJson($prettyPrint = true)
     {
         if ($prettyPrint) {
             $json = json_encode($this->fields, JSON_PRETTY_PRINT);
