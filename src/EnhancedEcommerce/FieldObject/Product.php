@@ -2,7 +2,9 @@
 
 namespace Gpaddis\AnalyticsRenderer\EnhancedEcommerce\FieldObject;
 
-class Product
+use Gpaddis\AnalyticsRenderer\AbstractObject;
+
+class Product extends AbstractObject
 {
     //
 }
