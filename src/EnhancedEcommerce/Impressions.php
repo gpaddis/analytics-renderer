@@ -9,7 +9,7 @@ class Impressions extends AbstractObject
 {
     public function addProduct(Product $product)
     {
-        $this->add('product', $product);
+        $this->add('impressions', $product);
         return $this;
     }
 }
