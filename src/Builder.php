@@ -7,7 +7,8 @@ namespace Gpaddis\AnalyticsRenderer;
  */
 class Builder
 {
-    protected static $classAliases = [
+    protected static $objectAliases = [
+        'impressions' => 'EnhancedEcommerce\Impressions',
         'productFieldObject' => 'EnhancedEcommerce\FieldObject\Product'
     ];
 
@@ -23,8 +24,8 @@ class Builder
      */
     public static function make($objectType)
     {
-        if (array_key_exists($objectType, self::$classAliases)) {
-            $objectType = self::$classAliases[$objectType];
+        if (array_key_exists($objectType, self::$objectAliases)) {
+            $objectType = self::$objectAliases[$objectType];
         }
 
         $fullClassName = "\Gpaddis\AnalyticsRenderer\\" . $objectType;
