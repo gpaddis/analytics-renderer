@@ -59,6 +59,22 @@ class ActivityTest extends TestCase
         $this->assertProductsAreRenderedCorrectly($json, 'impressions');
     }
 
+    /** @test */
+    public function it_builds_a_purchase_activity_object()
+    {
+        $actionField = Builder::make('actionFieldObject')
+            ->set('id', 'T12345');
+
+        $purchase = Builder::make('purchase')
+            ->set('actionField', $actionField)
+            ->addProducts($this->products);
+
+        $json = $purchase->renderAsJson();
+
+        $this->assertContains('"id": "T12345"', $json);
+        $this->assertProductsAreRenderedCorrectly($json, 'products');
+    }
+
     /**
      * Assert that the Json string contains the names of the products rendered
      * under the $productArrayKey specified.

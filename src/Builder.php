@@ -11,6 +11,9 @@ class Builder
         'click' => 'EnhancedEcommerce\Activity\Click',
         'detail' => 'EnhancedEcommerce\Activity\Detail',
         'impressions' => 'EnhancedEcommerce\Activity\Impressions',
+        'purchase' => 'EnhancedEcommerce\Activity\Purchase',
+
+        'actionFieldObject' => 'EnhancedEcommerce\FieldObject\Action',
         'productFieldObject' => 'EnhancedEcommerce\FieldObject\Product'
     ];
 
