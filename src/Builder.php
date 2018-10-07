@@ -8,7 +8,9 @@ namespace Gpaddis\AnalyticsRenderer;
 class Builder
 {
     protected static $objectAliases = [
-        'impressions' => 'EnhancedEcommerce\Impressions',
+        'click' => 'EnhancedEcommerce\Activity\Click',
+        'detail' => 'EnhancedEcommerce\Activity\Detail',
+        'impressions' => 'EnhancedEcommerce\Activity\Impressions',
         'productFieldObject' => 'EnhancedEcommerce\FieldObject\Product'
     ];
 
@@ -33,6 +35,8 @@ class Builder
             return new $fullClassName();
         }
 
-        throw new \InvalidArgumentException("Cannot build the non-existing object $objectType.");
+        throw new \InvalidArgumentException(
+            "Cannot build the non-existing object $objectType."
+        );
     }
 }

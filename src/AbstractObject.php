@@ -36,7 +36,7 @@ class AbstractObject implements \JsonSerializable
      * @param string $key
      * @return void
      */
-    public function checkOrInitializeArray($key)
+    protected function checkOrInitializeArray($key)
     {
         if (!isset($this->fields[$key]) || !is_array($this->fields[$key])) {
             $this->fields[$key] = [];
