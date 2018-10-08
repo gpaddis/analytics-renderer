@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Gpaddis\AnalyticsRenderer\Builder;
+use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Builder;
 
 class BuilderTest extends TestCase
 {
@@ -10,7 +10,7 @@ class BuilderTest extends TestCase
      */
     public function it_returns_an_instance_of_the_expected_class()
     {
-        $productFieldObject = Builder::make('EnhancedEcommerce\FieldObject\Product');
+        $productFieldObject = Builder::make('FieldObject\Product');
 
         $aliasedProductFieldObject = Builder::make('productFieldObject');
         $expectedType = 'Gpaddis\AnalyticsRenderer\EnhancedEcommerce\FieldObject\Product';

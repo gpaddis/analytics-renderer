@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Gpaddis\AnalyticsRenderer\Builder;
+use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Builder;
 
 class ActivityTest extends TestCase
 {

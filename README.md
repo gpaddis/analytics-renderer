@@ -11,6 +11,8 @@ Check out the official GTM Developer Guide here: https://developers.google.com/t
 This is how you would build a **Purchase** activity object and push it to the data layer:
 
 ```php
+use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Builder;
+
 // First build the productFieldObject(s)
 $product = Builder::make('productFieldObject')
     ->set('id', '12345678');
