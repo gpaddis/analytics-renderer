@@ -2,7 +2,7 @@
 
 namespace Gpaddis\AnalyticsRenderer;
 
-class AbstractObject implements \JsonSerializable
+abstract class AbstractObject implements \JsonSerializable
 {
     protected $fields = [];
     protected $containsPlaceholders = false;

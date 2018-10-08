@@ -34,7 +34,7 @@ class Builder
             $objectType = self::$objectAliases[$objectType];
         }
 
-        $fullClassName = "\Gpaddis\AnalyticsRenderer\\" . $objectType;
+        $fullClassName = __NAMESPACE__ . '\\' . $objectType;
         if (class_exists($fullClassName)) {
             return new $fullClassName();
         }
