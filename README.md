@@ -70,7 +70,7 @@ $product = Builder::make('productFieldObject')
     ->set('quantity', 2);
 ```
 
-To add products to an activity that requires them, use `addProduct()` (or `addProducts()` if you pass an array):
+To add products to an activity that requires them, use `addProduct()` (or `addProducts()` if you pass an array of products):
 ```php
 $checkout->addProduct($product);
 ```
@@ -85,8 +85,8 @@ $actionField = Builder::make('actionFieldObject')
 ```
 
 This will render to:
-```json
-"actionField": {
+```js
+{
     "step": stepId,
     "option": optionName
 }
