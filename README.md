@@ -28,11 +28,11 @@ $purchase = Builder::make('purchase')
     ->set('actionField', $actionField)
     ->addProduct($product);
 
-// Finally, render the impressions as Json on the page and push it to the data layer.
+// Finally, render the impressions as Json in your template and push it to the data layer.
 <script>
 dataLayer.push({
     'ecommerce': {
-        'purchase': $purchase->asJson();
+        'purchase': <?php echo $purchase->asJson(); ?>
     }
 });
 </script>
@@ -92,7 +92,7 @@ This will render to:
 }
 ```
 
-This way you can push the object inside a JavaScript function that accepts the parameters `stepId` and `optionName`, for example. To render the Json string, simply call `toJson()` or `toMinifiedJson()` at the end of the chain.
+This way you can push the object inside a JavaScript function that accepts the parameters `stepId` and `optionName`, for example. To render the Json string, simply call `asJson()` or `asMinifiedJson()` at the end of the chain.
 ```php
 $checkout->set('actionField', $actionField)
     ->asJson();

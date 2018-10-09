@@ -18,7 +18,7 @@ class RenderingTest extends TestCase
             ->addProduct($product);
 
         $json = $object->asJson();
-        $minifiedJson = $object->asJson();
+        $minifiedJson = $object->asMinifiedJson();
 
         $this->assertJson($json);
         $this->assertJson($minifiedJson);
@@ -36,13 +36,13 @@ class RenderingTest extends TestCase
             ->setVariable('var1', 'variable1')
             ->setVariable('var2', 'variable2');
 
-        $object = Builder::make('impressions')
+        $impressions = Builder::make('impressions')
             ->set('field1', 'value1')
             ->addProduct($product)
             ->setVariable('var3', 'variable3')
             ->setVariable('var4', 'variable4');
 
-        $json = $object->asJson();
+        $json = $impressions->asJson();
 
         $this->assertContains('"var1": variable1', $json);
         $this->assertContains('"var2": variable2', $json);

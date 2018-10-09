@@ -11,9 +11,10 @@ class BuilderTest extends TestCase
     public function it_returns_an_instance_of_the_expected_class()
     {
         $productFieldObject = Builder::make('FieldObject\Product');
-
         $aliasedProductFieldObject = Builder::make('productFieldObject');
+
         $expectedType = 'Gpaddis\AnalyticsRenderer\EnhancedEcommerce\FieldObject\Product';
+
         $this->assertInstanceOf($expectedType, $productFieldObject);
         $this->assertInstanceOf($expectedType, $aliasedProductFieldObject);
     }
