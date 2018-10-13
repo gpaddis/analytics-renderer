@@ -13,12 +13,22 @@ class FactoryTest extends TestCase
     public function it_returns_an_instance_of_the_expected_class()
     {
         $productFieldObject = Factory::make('FieldObject\Product');
-        $aliasedProductFieldObject = Factory::make('productFieldObject');
+        $this->assertInstanceOf(
+            'Gpaddis\AnalyticsRenderer\EnhancedEcommerce\FieldObject\Product',
+            $productFieldObject
+        );
+    }
 
-        $expectedType = 'Gpaddis\AnalyticsRenderer\EnhancedEcommerce\FieldObject\Product';
-
-        $this->assertInstanceOf($expectedType, $productFieldObject);
-        $this->assertInstanceOf($expectedType, $aliasedProductFieldObject);
+    /**
+     * @test
+     */
+    public function it_returns_an_instance_of_the_expected_aliased_class()
+    {
+        $aliasedProductFieldObject = Factory::make('actionFieldObject');
+        $this->assertInstanceOf(
+            'Gpaddis\AnalyticsRenderer\EnhancedEcommerce\FieldObject\Action',
+            $aliasedProductFieldObject
+        );
     }
 
     /**
