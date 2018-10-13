@@ -2,9 +2,9 @@
 
 namespace Gpaddis\AnalyticsRenderer\EnhancedEcommerce;
 
-use Gpaddis\AnalyticsRenderer\AbstractBuilder;
+use Gpaddis\AnalyticsRenderer\AbstractFactory;
 
-class Builder extends AbstractBuilder
+class Factory extends AbstractFactory
 {
     protected static $namespace = 'Gpaddis\AnalyticsRenderer\EnhancedEcommerce';
 

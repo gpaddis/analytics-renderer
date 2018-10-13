@@ -2,7 +2,7 @@
 
 namespace Gpaddis\AnalyticsRenderer;
 
-abstract class AbstractBuilder
+abstract class AbstractFactory
 {
     protected static $namespace = 'Gpaddis\AnalyticsRenderer';
 
@@ -26,7 +26,7 @@ abstract class AbstractBuilder
         }
 
         throw new \InvalidArgumentException(
-            "Cannot build the non-existing object $objectType."
+            "Cannot create the non-existing object $objectType."
         );
     }
 }

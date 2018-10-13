@@ -3,7 +3,7 @@
 namespace Tests\EnhancedEcommerce\Activity;
 
 use PHPUnit\Framework\TestCase;
-use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Builder;
+use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Factory;
 
 class ActivityTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ActivityTest extends TestCase
     {
         $this->products = [];
         for ($i = 1; $i <= $n; $i++) {
-            $this->products[] = Builder::make('productFieldObject')
+            $this->products[] = Factory::make('productFieldObject')
                 ->set('id', $i)
                 ->set('name', "Product $i");
         }
@@ -25,7 +25,7 @@ class ActivityTest extends TestCase
     /** @test */
     public function it_builds_a_click_activity_object()
     {
-        $click = Builder::make('click')
+        $click = Factory::make('click')
             ->set('actionField', ['list' => 'Search Results'])
             ->addProducts($this->products);
 
@@ -38,7 +38,7 @@ class ActivityTest extends TestCase
     /** @test */
     public function it_builds_a_detail_activity_object()
     {
-        $detail = Builder::make('detail')
+        $detail = Factory::make('detail')
             ->set('actionField', ['list' => 'Apparel Gallery'])
             ->addProducts($this->products);
 
@@ -51,7 +51,7 @@ class ActivityTest extends TestCase
     /** @test */
     public function it_builds_an_impressions_activity_object()
     {
-        $impressions = Builder::make('impressions')
+        $impressions = Factory::make('impressions')
             ->set('currencyCode', 'EUR')
             ->addProducts($this->products);
 
@@ -64,10 +64,10 @@ class ActivityTest extends TestCase
     /** @test */
     public function it_builds_a_purchase_activity_object()
     {
-        $actionField = Builder::make('actionFieldObject')
+        $actionField = Factory::make('actionFieldObject')
             ->set('id', 'T12345');
 
-        $purchase = Builder::make('purchase')
+        $purchase = Factory::make('purchase')
             ->set('actionField', $actionField)
             ->addProducts($this->products);
 
@@ -80,11 +80,11 @@ class ActivityTest extends TestCase
     /** @test */
     public function it_builds_a_checkout_activity_object()
     {
-        $actionField = Builder::make('actionFieldObject')
+        $actionField = Factory::make('actionFieldObject')
             ->setVariable('step', 'stepId')
             ->setVariable('option', 'optionName');
 
-        $checkout = Builder::make('checkout')
+        $checkout = Factory::make('checkout')
             ->set('actionField', $actionField)
             ->addProducts($this->products);
 

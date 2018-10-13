@@ -3,7 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Builder;
+use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Factory;
 
 class RenderingTest extends TestCase
 {
@@ -12,10 +12,10 @@ class RenderingTest extends TestCase
      */
     public function it_renders_a_multidimensional_object_to_json()
     {
-        $product = Builder::make('productFieldObject')
+        $product = Factory::make('productFieldObject')
             ->set('name', 'Test Product');
 
-        $object = Builder::make('impressions')
+        $object = Factory::make('impressions')
             ->set('field1', 'value1')
             ->addProduct($product);
 
@@ -33,12 +33,12 @@ class RenderingTest extends TestCase
      */
     public function it_renders_an_object_to_json_with_variables()
     {
-        $product = Builder::make('productFieldObject')
+        $product = Factory::make('productFieldObject')
             ->set('name', 'Test Product')
             ->setVariable('var1', 'variable1')
             ->setVariable('var2', 'variable2');
 
-        $impressions = Builder::make('impressions')
+        $impressions = Factory::make('impressions')
             ->set('field1', 'value1')
             ->addProduct($product)
             ->setVariable('var3', 'variable3')
