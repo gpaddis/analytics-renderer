@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\EnhancedEcommerce;
+
 use PHPUnit\Framework\TestCase;
 use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Builder;
 

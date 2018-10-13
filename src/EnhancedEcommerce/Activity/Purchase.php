@@ -2,12 +2,7 @@
 
 namespace Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Activity;
 
-use Gpaddis\AnalyticsRenderer\AbstractObject;
-use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\AddProducts;
-
-class Purchase extends AbstractObject
+class Purchase extends AbstractActivity
 {
-    use AddProducts;
-
-    protected $productArrayKey = 'products';
+    //
 }
