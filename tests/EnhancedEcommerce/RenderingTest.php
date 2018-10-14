@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests;
+namespace Tests\EnhancedEcommerce;
 
-use PHPUnit\Framework\TestCase;
 use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Factory;
+use PHPUnit\Framework\TestCase;
 
 class RenderingTest extends TestCase
 {
