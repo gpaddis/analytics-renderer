@@ -30,11 +30,7 @@ class DataLayerTest extends TestCase
             ->set('actionField', $actionFieldObject)
             ->addProduct($this->product);
 
-        $rendered = $this->renderer
-            ->load($checkout)
-            ->render();
-
-        $this->assertEquals($expected, $rendered);
+        $this->assertIsRenderedCorrectly($expected, $checkout);
     }
 
     /**
@@ -50,13 +46,40 @@ class DataLayerTest extends TestCase
             ->set('actionField', $actionFieldObject)
             ->addProduct($this->product);
 
+        $this->assertIsRenderedCorrectly($expected, $detail);
+    }
+
+    /**
+     * Assert that the $activity is rendered as $expected.
+     *
+     * @param string $expected
+     * @param AbstractObject $activity
+     * @return void
+     */
+    protected function assertIsRenderedCorrectly($expected, $activity)
+    {
         $rendered = $this->renderer
-            ->load($detail)
+            ->load($activity)
             ->render();
 
         $this->assertEquals($expected, $rendered);
     }
 
+    /**
+     * Load the content of a file for the data providers.
+     *
+     * @param string $filename
+     * @return string
+     */
+    protected function loadFile($filename)
+    {
+        $path = __DIR__ . '/dataProviders/' . $filename;
+        return file_get_contents($path);
+    }
+
+    /**
+     * Data Providers
+     */
     public function checkout()
     {
         return [
@@ -69,11 +92,5 @@ class DataLayerTest extends TestCase
         return [
             [$this->loadFile('detail.js')]
         ];
-    }
-
-    protected function loadFile($filename)
-    {
-        $path = __DIR__ . '/dataProviders/' . $filename;
-        return file_get_contents($path);
     }
 }
