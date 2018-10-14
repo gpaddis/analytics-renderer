@@ -15,11 +15,9 @@ class DataLayer implements RendererInterface
     public function render()
     {
         $wrapper = $this->getWrappedActivity();
-        $json = json_encode($wrapper, JSON_PRETTY_PRINT);
 
-        if ($this->activity->containsPlaceholders()) {
-            $json = $this->removePlaceholders($json);
-        }
+        $json = json_encode($wrapper, JSON_PRETTY_PRINT);
+        $json = $this->removePlaceholders($json);
 
         return "dataLayer.push({$json});";
     }
@@ -60,6 +58,13 @@ class DataLayer implements RendererInterface
         switch ($activityType) {
             case 'checkout':
                 $wrapper['event'] = $activityType;
+                $wrapper['ecommerce'] = [
+                    $activityType => $this->activity
+                ];
+                break;
+
+            case 'click':
+                $wrapper['event'] = 'productClick';
                 $wrapper['ecommerce'] = [
                     $activityType => $this->activity
                 ];

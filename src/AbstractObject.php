@@ -57,7 +57,6 @@ abstract class AbstractObject implements \JsonSerializable
     public function setVariable($key, $variableName)
     {
         $this->fields[$key] = "%%$variableName%%";
-        $this->containsPlaceholders = true;
         return $this;
     }
 
@@ -80,11 +79,7 @@ abstract class AbstractObject implements \JsonSerializable
             $json = json_encode($this->fields);
         }
 
-        if ($this->containsPlaceholders()) {
-            $json = $this->removePlaceholders($json);
-        }
-
-        return $json;
+        return $this->removePlaceholders($json);
     }
 
     /**

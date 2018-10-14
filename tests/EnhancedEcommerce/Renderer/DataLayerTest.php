@@ -14,6 +14,10 @@ class DataLayerTest extends TestCase
         $this->product = Factory::make('productFieldObject')
             ->set('id', '12345')
             ->set('name', 'Example Product');
+
+        $this->productWithVariables = Factory::make('productFieldObject')
+            ->setVariable('id', 'productId')
+            ->setVariable('name', 'productName');
     }
 
     /**
@@ -31,6 +35,22 @@ class DataLayerTest extends TestCase
             ->addProduct($this->product);
 
         $this->assertIsRenderedCorrectly($expected, $checkout);
+    }
+
+    /**
+     * @test
+     * @dataProvider click
+     */
+    public function it_renders_a_product_click_object($expected)
+    {
+        $actionFieldObject = Factory::make('actionFieldObject')
+            ->set('list', 'Search Results');
+
+        $click = Factory::make('click')
+            ->set('actionField', $actionFieldObject)
+            ->addProduct($this->productWithVariables);
+
+        $this->assertIsRenderedCorrectly($expected, $click);
     }
 
     /**
@@ -97,6 +117,13 @@ class DataLayerTest extends TestCase
     {
         return [
             [$this->loadFile('checkout.js')]
+        ];
+    }
+
+    public function click()
+    {
+        return [
+            [$this->loadFile('click.js')]
         ];
     }
 
