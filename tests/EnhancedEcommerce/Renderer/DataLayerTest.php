@@ -20,7 +20,7 @@ class DataLayerTest extends TestCase
      * @test
      * @dataProvider checkout
      */
-    public function it_renders_the_checkout_object($expected)
+    public function it_renders_a_checkout_object($expected)
     {
         $actionFieldObject = Factory::make('actionFieldObject')
             ->set('step', 1)
@@ -37,10 +37,37 @@ class DataLayerTest extends TestCase
         $this->assertEquals($expected, $rendered);
     }
 
+    /**
+     * @test
+     * @dataProvider detail
+     */
+    public function it_renders_a_detail_object($expected)
+    {
+        $actionFieldObject = Factory::make('actionFieldObject')
+            ->set('list', 'Apparel Gallery');
+
+        $detail = Factory::make('detail')
+            ->set('actionField', $actionFieldObject)
+            ->addProduct($this->product);
+
+        $rendered = $this->renderer
+            ->load($detail)
+            ->render();
+
+        $this->assertEquals($expected, $rendered);
+    }
+
     public function checkout()
     {
         return [
             [$this->loadFile('checkout.js')]
+        ];
+    }
+
+    public function detail()
+    {
+        return [
+            [$this->loadFile('detail.js')]
         ];
     }
 

@@ -11,15 +11,9 @@ class DataLayer implements RendererInterface
 
     public function render()
     {
-        $activityType = $this->getActivityType();
-        $wrapper = [
-            'event' => $activityType,
-            'ecommerce' => [
-                $activityType => $this->activity
-            ]
-        ];
-
+        $wrapper = $this->getWrappedActivity();
         $json = json_encode($wrapper, JSON_PRETTY_PRINT);
+
         return "dataLayer.push({$json});";
     }
 
@@ -36,7 +30,7 @@ class DataLayer implements RendererInterface
     }
 
     /**
-     * Get the activity type loaded in the object.
+     * Get the activity type loaded in the renderer.
      *
      * @return string
      */
@@ -44,5 +38,35 @@ class DataLayer implements RendererInterface
     {
         $classname = (new \ReflectionClass($this->activity))->getShortName();
         return strtolower($classname);
+    }
+
+    /**
+     * Get the activity wrapped in the correct data structure according to the type.
+     *
+     * @return array
+     */
+    protected function getWrappedActivity()
+    {
+        $wrapper = [];
+
+        $activityType = $this->getActivityType();
+        switch ($activityType) {
+            case 'checkout':
+                $wrapper['event'] = $activityType;
+                break;
+
+            case 'detail':
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
+        $wrapper['ecommerce'] = [
+            $activityType => $this->activity
+        ];
+
+        return $wrapper;
     }
 }
