@@ -60,19 +60,21 @@ class DataLayer implements RendererInterface
         switch ($activityType) {
             case 'checkout':
                 $wrapper['event'] = $activityType;
+                $wrapper['ecommerce'] = [
+                    $activityType => $this->activity
+                ];
                 break;
 
             case 'detail':
+                $wrapper['ecommerce'] = [
+                    $activityType => $this->activity
+                ];
                 break;
 
-            default:
-                # code...
+            case 'impressions':
+                $wrapper['ecommerce'] = $this->activity;
                 break;
         }
-
-        $wrapper['ecommerce'] = [
-            $activityType => $this->activity
-        ];
 
         return $wrapper;
     }

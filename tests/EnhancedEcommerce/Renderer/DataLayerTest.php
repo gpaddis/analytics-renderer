@@ -50,6 +50,19 @@ class DataLayerTest extends TestCase
     }
 
     /**
+     * @test
+     * @dataProvider impressions
+     */
+    public function it_renders_an_impressions_object($expected)
+    {
+        $impressions = Factory::make('impressions')
+            ->set('currencyCode', 'EUR')
+            ->addProduct($this->product);
+
+        $this->assertIsRenderedCorrectly($expected, $impressions);
+    }
+
+    /**
      * Assert that the $activity is rendered as $expected.
      *
      * @param string $expected
@@ -91,6 +104,13 @@ class DataLayerTest extends TestCase
     {
         return [
             [$this->loadFile('detail.js')]
+        ];
+    }
+
+    public function impressions()
+    {
+        return [
+            [$this->loadFile('impressions.js')]
         ];
     }
 }
