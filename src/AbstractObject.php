@@ -2,10 +2,12 @@
 
 namespace Gpaddis\AnalyticsRenderer;
 
+use Gpaddis\AnalyticsRenderer\RemovePlaceholders;
+
 abstract class AbstractObject implements \JsonSerializable
 {
+    use RemovePlaceholders;
     protected $fields = [];
-    protected $containsPlaceholders = false;
 
     /**
      * @param string $key
@@ -82,37 +84,6 @@ abstract class AbstractObject implements \JsonSerializable
             $json = $this->removePlaceholders($json);
         }
 
-        return $json;
-    }
-
-    /**
-     * Check recursively whether any of the objects contain placeholders.
-     *
-     * @return boolean
-     */
-    protected function containsPlaceholders()
-    {
-        if ($this->containsPlaceholders) {
-            return true;
-        }
-
-        foreach ($this->fields as $field) {
-            if ($field instanceof self && $field->containsPlaceholders()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string $json
-     * @return string
-     */
-    protected function removePlaceholders($json)
-    {
-        $json = str_replace('"%%', '', $json);
-        $json = str_replace('%%"', '', $json);
         return $json;
     }
 

@@ -4,15 +4,22 @@ namespace Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Renderer;
 
 use Gpaddis\AnalyticsRenderer\RendererInterface;
 use Gpaddis\AnalyticsRenderer\EnhancedEcommerce\Activity\AbstractActivity;
+use Gpaddis\AnalyticsRenderer\RemovePlaceholders;
 
 class DataLayer implements RendererInterface
 {
+    use RemovePlaceholders;
+
     protected $activity = null;
 
     public function render()
     {
         $wrapper = $this->getWrappedActivity();
         $json = json_encode($wrapper, JSON_PRETTY_PRINT);
+
+        if ($this->activity->containsPlaceholders()) {
+            $json = $this->removePlaceholders($json);
+        }
 
         return "dataLayer.push({$json});";
     }
